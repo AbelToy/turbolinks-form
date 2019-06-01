@@ -93,9 +93,7 @@ TurbolinksForm.handleResponse = function(response) {
 //
 // PS: it is also activated on errors with code 500, so that we can know the
 //     error is happening and not that the site is unresponsive
-$(document).on("ajax:error", function(e) {
-  var response = e.detail[0];
-
+$(document).on("ajax:error", function(e, response) {
   // dispatches turbolinks event
   Turbolinks.dispatch('turbolinks:request-end', {data: {xhr: response}});
 
@@ -109,10 +107,7 @@ $(document).on("ajax:error", function(e) {
 // This code is only activated if:
 //  1) HTTP status code is 200
 //  2) Response has 'turbolinks-form-render' header and 'turbolinks-form-render-when-success' header
-$(document).on("ajax:success", function(e) {
-  var detail = e.detail;
-  var data = detail[0], status = detail[1], response = detail[2];
-
+$(document).on("ajax:success", function(e, data, status, response) {
   // dispatches turbolinks event
   Turbolinks.dispatch('turbolinks:request-end', {data: {xhr: response}});
 
@@ -124,9 +119,6 @@ $(document).on("ajax:success", function(e) {
 
 // Sets up event delegation to forms with data-turbolinks-form attribute
 $(document).on("ajax:beforeSend", "[data-turbolinks-form]", function(e, xhr, settings) {
-  var detail = e.detail;
-  var xhr = detail[0], settings = detail[1];
-
   // adds the turbolinks-form-submit header for forms with data-turbolinks-form attribute being submitted,
   // so the controller knows it has to put the turbolinks-form-render header on the response
   xhr.setRequestHeader('turbolinks-form-submit', '1');
