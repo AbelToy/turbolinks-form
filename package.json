@@ -1,0 +1,10 @@
+{
+    "name": "turbolinks-form",
+    "version": "0.0.7",
+    "private": true,
+    "description": "MTurbolinks-form extends Turbolinks 5 to allow a controller to render any view after a form submit, and this view's body will replace the current body, just like a regular Turbolinks visit. This makes it easy to render form errors or to highlight invalid fields.",
+    "main": "app/assets/javascripts/turbolinks-form-core.js",
+    "repository": "https://github.com/hsgubert/turbolinks-form.git",
+    "author": "Marcello Barnaba",
+    "license": "MIT"
+}
